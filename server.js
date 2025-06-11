@@ -1,23 +1,32 @@
 const express = require('express');
 const app = express();
+const port = process.env.PORT || 3000;
 
-// Enable proxy trust if hosted behind a proxy (like on Replit, Render, etc.)
-app.set('trust proxy', true);
+// Enable CORS (optional for freeCodeCamp projects)
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
 
+// API endpoint
 app.get('/api/whoami', (req, res) => {
-  const ip = req.ip;
-  const language = req.get('Accept-Language');
-  const software = req.get('User-Agent');
-
+  const ipaddress = req.ip || req.connection.remoteAddress;
+  const language = req.headers['accept-language'];
+  const software = req.headers['user-agent'];
+  
   res.json({
-    ipaddress: ip,
+    ipaddress: ipaddress,
     language: language,
     software: software
   });
 });
 
-// Start server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+// Serve the homepage (optional)
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/views/index.html');
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });

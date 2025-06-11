@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Header Parser</title>
+  <meta charset="UTF-8">
+  <title>Request Header Parser Microservice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    code {
+      background-color: #f0f0f0;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+  </style>
 </head>
 <body>
   <h1>Request Header Parser Microservice</h1>
-  <p>Make a GET request to <code>/api/whoami</code> to get your IP, language, and software details.</p>
+  <p>Example usage:</p>
+  <code>GET /api/whoami</code>
+  <p>Example output:</p>
+  <code>
+    {
+      "ipaddress": "::ffff:159.20.14.100",
+      "language": "en-US,en;q=0.5",
+      "software": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0"
+    }
+  </code>
 </body>
 </html>
